@@ -17,6 +17,8 @@ RUN mkdir build && cd build && \
 
 FROM alpine:3
 
+RUN apk add --no-cache libretls libuv libstdc++ hwloc
+
 COPY --from=builder /xmrig/build/xmrig /usr/local/bin/xmrig
 
 WORKDIR /usr/local/bin
