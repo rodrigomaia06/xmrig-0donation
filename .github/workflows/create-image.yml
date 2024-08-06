@@ -24,7 +24,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}/xmrig-0donation:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}:$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/xmrig/xmrig/releases/latest | jq -r '.tag_name' | cut -c 2-)
 
     - name: Push the Docker image
       run: docker push ghcr.io/${{ github.repository }}/xmrig-0donation:$(date +%s)
