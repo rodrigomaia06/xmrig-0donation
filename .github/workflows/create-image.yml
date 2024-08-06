@@ -11,7 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Get Latest Release Tag
+      id: get_release
+      run: |
+        latest_tag=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+                           https://api.github.com/repos/xmrig/xmrig/releases/latest | \
+                           jq -r '.tag_name' | cut -c 2-)
+        echo "LATEST_TAG=$latest_tag" >> $GITHUB_ENV
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -24,7 +33,9 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}:$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/xmrig/xmrig/releases/latest | jq -r '.tag_name' | cut -c 2-)
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}:${{ env.LATEST_TAG }}
 
     - name: Push the Docker image
-      run: docker push ghcr.io/${{ github.repository }}/xmrig-0donation:$(date +%s)
+      run: |
+        docker push ghcr.io/${{ github.repository }}:${{ env.LATEST_TAG }}
