@@ -22,7 +22,7 @@ docker run -d \
   --device /dev/mem \
   --name xmrig \
   -v /lib/modules:/lib/modules \
-  xmrig-0donation:latest \
+  ghcr.io/rodrigomaia06/xmrig-0donation:latest \
   --parameter1=value1
   --parameter2=value2
 ```
