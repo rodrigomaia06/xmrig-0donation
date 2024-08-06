@@ -20,7 +20,6 @@ docker run -d \
   --cap-add SYS_RAWIO \
   --device /dev/cpu \
   --device /dev/mem \
-  -p 35689:35689 \ # API port
   --name xmrig \
   -v /lib/modules:/lib/modules \
   xmrig-0donation:latest \
