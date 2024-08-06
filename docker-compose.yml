@@ -15,5 +15,5 @@ services:
    container_name: xmrig
    volumes:
     - /lib/modules:/lib/modules
-   image: xmrig-0donation:latest
+   image: ghcr.io/rodrigomaia06/xmrig-0donation:latest
    command: --api-worker-id=(example-name) --http-host=0.0.0.0 --http-port=35689 -o xmr-eu1.nanopool.org:10300 -k --cpu-priority=0 --threads 8
