@@ -2,7 +2,7 @@
 
 ## Overview
 
-`xmrig-0donation` is a pre-built Docker image configured to set Xmrig's donation level to 0%. Xmrig is a popular CPU miner for Monero.
+`xmrig-0donation` is a pre-built Docker image configured to set Xmrig's donation level to 0%. Xmrig is a popular CPU miner for Monero. This image is updated every week.
 
 ## Docker Usage
 
